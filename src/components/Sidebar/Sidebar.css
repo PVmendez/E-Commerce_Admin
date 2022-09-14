@@ -1,7 +1,7 @@
 .sidebar {
   height: 100vh;
   background-color: rgb(26, 25, 25);
-  position: fixed;
+  padding: 0;
 }
 .div-sidebar {
   color: #65696e;
