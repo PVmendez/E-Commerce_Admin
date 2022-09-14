@@ -2,9 +2,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 .p-logo {
   font-size: 25px;
   font-weight: 700;
   margin: 0;
+}
+.avatarAdmin {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
 }
