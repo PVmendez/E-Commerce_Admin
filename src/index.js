@@ -22,8 +22,5 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
-<<<<<<< HEAD
 
 reportWebVitals();
-=======
->>>>>>> eabc2dcf526f2fa0a3b81a7158eabf27a3cfbcf2
