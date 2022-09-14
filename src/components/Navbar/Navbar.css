@@ -1,0 +1,10 @@
+#navbarAdmin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.p-logo {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+}
