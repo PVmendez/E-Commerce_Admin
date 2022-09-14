@@ -13,7 +13,7 @@ function NavbarAdmin() {
         </Navbar.Brand>
 
         <div>
-          <i class="fas fa-search"></i>
+          <i className="fas fa-search"></i>
         </div>
       </Container>
     </Navbar>
