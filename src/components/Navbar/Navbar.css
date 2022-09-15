@@ -2,9 +2,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 1.7%;
+  padding-right: 25px;
+  font-family: "Montserrat", sans-serif;
+}
+.navbar {
+  background-color: white !important;
 }
 .p-logo {
   font-size: 25px;
   font-weight: 700;
   margin: 0;
+}
+.avatarAdmin {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
 }

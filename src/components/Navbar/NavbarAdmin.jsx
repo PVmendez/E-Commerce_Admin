@@ -1,21 +1,24 @@
-import Container from "react-bootstrap/Container";
-
 import Navbar from "react-bootstrap/Navbar";
 import "../Navbar/Navbar.css";
 
 function NavbarAdmin() {
   return (
-    <Navbar bg="light" variant="light">
-      <Container id="navbarAdmin">
+    <Navbar bg="light" variant="light" id="navbarAdmin">
+      <div>
         <Navbar.Brand href="/" className="d-flex align-items-center">
-          <img src="/img/logo-icon.png" alt="" />
+          <img className="me-1" src="/img/logo-icon.png" alt="logo" />
           <p className="p-logo">Admin</p>
         </Navbar.Brand>
+      </div>
 
-        <div>
-          <i className="fas fa-search"></i>
-        </div>
-      </Container>
+      <div className="d-flex align-items-center ">
+        <i className="fas fa-search" style={{ color: "grey" }}></i>
+        <img
+          src="./img/avatar-7.png"
+          alt="avatarAdmin"
+          className="avatarAdmin ms-4"
+        />
+      </div>
     </Navbar>
   );
 }
