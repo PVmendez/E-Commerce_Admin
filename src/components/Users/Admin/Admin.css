@@ -1,0 +1,52 @@
+root {
+  --color-dark: #15181f;
+  --color-dark-x: #2d343f;
+  --color-dark-xx: #1f232b;
+  --color-light: #ffffff;
+  --color-grey: #f5f6f8;
+}
+
+.bg-light {
+  background-color: var(--color-light)!important;
+}
+
+.bg-dark {
+  background-color: var(--color-dark)!important;
+}
+
+.btn-form {
+  font-weight: 400;
+  padding: 1rem 2rem;
+  border-radius: 5rem;
+  min-width: 10rem;
+  margin: 20px
+}
+
+.btn {
+  margin-right: 5px
+}
+
+.btn-outline-dark {
+  border: 2px solid var(--color-dark-xx);
+}
+
+.form-control {
+  background-color: var(--color-dark-xx);
+  border: 2px solid var(--color-dark-xx);
+  border-radius: .2rem;
+  padding: 1.5rem 1rem;
+}
+
+@media (max-width: 575.98px) {
+  .p-6 {
+      padding: 2rem;
+  }
+
+  .contact-box {
+      padding: 0;
+  }
+
+  .width-100 {
+      width: 100%;
+  }
+}

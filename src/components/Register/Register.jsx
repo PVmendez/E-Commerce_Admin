@@ -27,16 +27,16 @@ export const Register = () => {
       const result = await axios({
         method: "POST",
         baseURL: process.env.REACT_APP_API_BASE_URL,
-        url: `/clients/register`,
+        url: `/administrators/register`,
         data: { user: user },
       });
       console.log(result);
       if (result.status === 201) {
-        navigate("/login");
-      } else {
-        setError(result.status);
-        navigate("/registro");
-      }
+        return navigate("/login");
+      } 
+      setError(result.status);
+      navigate("/registro");
+      
     };
     getUserRegister();
   };
