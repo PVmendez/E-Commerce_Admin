@@ -1,113 +1,134 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import Accordion from "react-bootstrap/Accordion";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
+import axios from "axios";
+import Table from "react-bootstrap/Table";
+
 export default function Pedidos() {
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+    const getOrders = async () => {
+      const result = await axios({
+        method: "GET",
+        baseURL: process.env.REACT_APP_API_BASE_URL,
+        url: "/administrators/orders",
+      });
+      console.log(result.data);
+      setOrders(result.data.orders);
+    };
+    getOrders();
+  }, []);
+
+  const updateOrderState = async (id, state) => {
+    const result = await axios({
+      method: "PATCH",
+      baseURL: process.env.REACT_APP_API_BASE_URL,
+      url: "/administrators/orders",
+      data: { id, state },
+    });
+    console.log("order", result.data);
+  };
+
   return (
     <div className="row w-100">
       <Sidebar />
       <div className="col-10 p-0">
         <div className="px-3">
           <p className="fs-3">Listado de Pedidos</p>
-          <p className="fs-6">Pedidos: 3</p>
+          <p className="fs-6">Pedidos: {orders.length}</p>
         </div>
         <div className="px-3">
           <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Pedido #1</Accordion.Header>
-              <Accordion.Body>
-                <Card>
-                  <Card.Body>User Info</Card.Body>
-                </Card>
-                <br />
-                <Accordion defaultActiveKey="4">
-                  <Accordion.Item eventKey="4">
-                    <Accordion.Header>Productos</Accordion.Header>
+            {orders
+              .slice(0)
+              .reverse()
+              .map((order, index, array) => {
+                let orderPrice = 0;
+                return (
+                  <Accordion.Item eventKey={index}>
+                    <Accordion.Header>
+                      Pedido #{array.length - 1 * index}
+                    </Accordion.Header>
                     <Accordion.Body>
-                      <ListGroup>
-                        <ListGroup.Item>Producto #1</ListGroup.Item>
-                        <ListGroup.Item>Producto #2</ListGroup.Item>
-                        <ListGroup.Item>Producto #3</ListGroup.Item>
-                        <ListGroup.Item>Producto #4</ListGroup.Item>
-                        <ListGroup.Item>Producto #5</ListGroup.Item>
-                      </ListGroup>
+                      <Card>
+                        <Card.Body>
+                          <div className="d-flex justify-content-between">
+                            Customer:{" "}
+                            <span>
+                              Firstname: {order.customerData.firstName}
+                            </span>
+                            <span>Email: {order.customerData.email}</span>
+                            <span>Phone: {order.customerData.phone}</span>
+                          </div>
+                        </Card.Body>
+                      </Card>
+                      <br />
+                      <Accordion defaultActiveKey={array.length + 1 * index}>
+                        <Accordion.Item eventKey={-(array.length + 1 * index)}>
+                          <Accordion.Header>Productos</Accordion.Header>
+                          <Accordion.Body>
+                            <Table striped bordered hover>
+                              <thead>
+                                <tr>
+                                  <th>Nombre</th>
+                                  <th>Precio</th>
+                                  <th>Cantidad</th>
+                                  <th>Total</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {order.products.map((item) => {
+                                  orderPrice += Number(
+                                    (
+                                      item.product.price * item.quantity
+                                    ).toFixed(12)
+                                  );
+                                  return (
+                                    <tr>
+                                      <td>{item.product.name}</td>
+                                      <td>${item.product.price}</td>
+                                      <td>{item.quantity}</td>
+                                      <td>
+                                        {Number(
+                                          (
+                                            item.product.price * item.quantity
+                                          ).toFixed(12)
+                                        )}
+                                      </td>
+                                    </tr>
+                                  );
+                                })}
+                                <tr>
+                                  <td>Total Pago:</td>
+                                  <td></td>
+                                  <td></td>
+                                  <td>${orderPrice}</td>
+                                </tr>
+                              </tbody>
+                            </Table>
+                          </Accordion.Body>
+                        </Accordion.Item>
+                      </Accordion>
+                      <Form.Group className="my-3">
+                        <Form.Label>Estado:</Form.Label>
+                        <Form.Select
+                          defaultValue={order.state}
+                          onChange={(e) => {
+                            updateOrderState(order.id, e.target.value);
+                          }}
+                        >
+                          <option value={"Pago"}>Pago</option>
+                          <option value={"Enviado"}>Enviado</option>
+                          <option value={"Entregado"}>Entregado</option>
+                        </Form.Select>
+                      </Form.Group>
                     </Accordion.Body>
                   </Accordion.Item>
-                </Accordion>
-                <Form.Group className="mb-3">
-                  <Form.Label>Estado:</Form.Label>
-                  <Form.Select>
-                    <option>Pago</option>
-                    <option>Enviado</option>
-                    <option>Entregado</option>
-                  </Form.Select>
-                </Form.Group>
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Pedido #1</Accordion.Header>
-              <Accordion.Body>
-                <Card>
-                  <Card.Body>User Info</Card.Body>
-                </Card>
-                <br />
-                <Accordion defaultActiveKey="5">
-                  <Accordion.Item eventKey="5">
-                    <Accordion.Header>Productos</Accordion.Header>
-                    <Accordion.Body>
-                      <ListGroup>
-                        <ListGroup.Item>Producto #1</ListGroup.Item>
-                        <ListGroup.Item>Producto #2</ListGroup.Item>
-                        <ListGroup.Item>Producto #3</ListGroup.Item>
-                        <ListGroup.Item>Producto #4</ListGroup.Item>
-                        <ListGroup.Item>Producto #5</ListGroup.Item>
-                      </ListGroup>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-                <Form.Group className="mb-3">
-                  <Form.Label>Estado:</Form.Label>
-                  <Form.Select>
-                    <option>Pago</option>
-                    <option>Enviado</option>
-                    <option>Entregado</option>
-                  </Form.Select>
-                </Form.Group>
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="2">
-              <Accordion.Header>Pedido #1</Accordion.Header>
-              <Accordion.Body>
-                <Card>
-                  <Card.Body>User Info</Card.Body>
-                </Card>
-                <br />
-                <Accordion defaultActiveKey="6">
-                  <Accordion.Item eventKey="6">
-                    <Accordion.Header>Productos</Accordion.Header>
-                    <Accordion.Body>
-                      <ListGroup>
-                        <ListGroup.Item>Producto #1</ListGroup.Item>
-                        <ListGroup.Item>Producto #2</ListGroup.Item>
-                        <ListGroup.Item>Producto #3</ListGroup.Item>
-                        <ListGroup.Item>Producto #4</ListGroup.Item>
-                        <ListGroup.Item>Producto #5</ListGroup.Item>
-                      </ListGroup>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-                <Form.Group className="mb-3">
-                  <Form.Label>Estado:</Form.Label>
-                  <Form.Select>
-                    <option>Pago</option>
-                    <option>Enviado</option>
-                    <option>Entregado</option>
-                  </Form.Select>
-                </Form.Group>
-              </Accordion.Body>
-            </Accordion.Item>
+                );
+              })}
           </Accordion>
         </div>
       </div>
