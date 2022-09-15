@@ -2,8 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 25px;
+  padding-left: 1.7%;
   padding-right: 25px;
+  font-family: "Montserrat", sans-serif;
+}
+.navbar {
+  background-color: white !important;
 }
 .p-logo {
   font-size: 25px;

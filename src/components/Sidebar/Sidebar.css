@@ -1,21 +1,28 @@
 .sidebar {
-  height: 100vh;
+  min-height: 100%;
   background-color: rgb(26, 25, 25);
   padding: 0;
 }
 .div-sidebar {
+  font-family: "Montserrat", sans-serif;
   color: #65696e;
   font-size: 18px;
   font-weight: 800;
-  margin-left: 30px;
+  margin-left: 13%;
   padding-top: 25px;
   display: flex;
   align-items: center;
 }
+
 .div-sidebar:hover {
   color: #fff;
   cursor: pointer;
 }
 .a-sidebar {
   text-decoration: none;
+}
+@media (max-width: 1020px) {
+  .div-sidebar p {
+    display: none;
+  }
 }
