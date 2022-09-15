@@ -69,18 +69,16 @@ export default function Home() {
                 src="./img/Facebook.png"
                 className="imgFacebook"
               />
-              <Card.Body>
-                <Card.Text className="d-flex justify-content-evenly">
-                  <div className="firstDivCard">
-                    <h4>89K</h4>
-                    <p>FRIENDS</p>
-                  </div>
+              <Card.Body className="d-flex justify-content-evenly">
+                <div className="firstDivCard">
+                  <p className="p-cardsSocialMedia">89K</p>
+                  <p>FRIENDS</p>
+                </div>
 
-                  <div>
-                    <h4>459</h4>
-                    <p>FEEDS</p>
-                  </div>
-                </Card.Text>
+                <div>
+                  <p className="p-cardsSocialMedia">459</p>
+                  <p>FEEDS</p>
+                </div>
               </Card.Body>
             </Card>
             <Card id="cardSocialMedia2" className="mt-5 ms-5">
@@ -89,18 +87,16 @@ export default function Home() {
                 src="./img/Twitter.jpg"
                 className="imgTwitter"
               />
-              <Card.Body>
-                <Card.Text className="d-flex justify-content-evenly">
-                  <div className="firstDivCard">
-                    <h4>973K</h4>
-                    <p>FOLLOWERS</p>
-                  </div>
+              <Card.Body className="d-flex justify-content-evenly">
+                <div className="firstDivCard">
+                  <p className="p-cardsSocialMedia">973K</p>
+                  <p>FOLLOWERS</p>
+                </div>
 
-                  <div>
-                    <h4>1792</h4>
-                    <p>TWEETS</p>
-                  </div>
-                </Card.Text>
+                <div>
+                  <p className="p-cardsSocialMedia">1792</p>
+                  <p>TWEETS</p>
+                </div>
               </Card.Body>
             </Card>
             <Card id="cardSocialMedia3" className="mt-5 ms-5">
@@ -109,18 +105,16 @@ export default function Home() {
                 src="./img/Linkedin.jpg"
                 className="imgLinkedin"
               />
-              <Card.Body>
-                <Card.Text className="d-flex justify-content-evenly">
-                  <div className="firstDivCard">
-                    <h4>500+</h4>
-                    <p>CONTACTS</p>
-                  </div>
+              <Card.Body className="d-flex justify-content-evenly">
+                <div className="firstDivCard">
+                  <p className="p-cardsSocialMedia">500+</p>
+                  <p>CONTACTS</p>
+                </div>
 
-                  <div>
-                    <h4>292</h4>
-                    <p>FEEDS</p>
-                  </div>
-                </Card.Text>
+                <div>
+                  <p className="p-cardsSocialMedia">292</p>
+                  <p>FEEDS</p>
+                </div>
               </Card.Body>
             </Card>
           </div>
