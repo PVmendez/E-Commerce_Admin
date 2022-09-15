@@ -1,5 +1,10 @@
 .colHome {
   background-color: #f4f6f9;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
 .card1 {
   background-color: rgb(218, 67, 67);
@@ -31,8 +36,55 @@
   font-weight: 400;
   margin-top: 10px;
 }
+#cardSocialMedia,
+#cardSocialMedia2,
+#cardSocialMedia3 {
+  width: 300px;
+}
+.firstDivCard {
+  border-right: 1px solid rgb(183, 183, 183);
+  padding-right: 30px;
+}
+.imgTwitter {
+  height: 160px;
+  object-fit: cover;
+  border-bottom: 1px solid gainsboro;
+}
+.imgLinkedin {
+  height: 160px;
+  object-fit: contain;
+  border-bottom: 1px solid gainsboro;
+}
+.imgFacebook {
+  height: 160px;
+  border-bottom: 1px solid gainsboro;
+}
+.divChart {
+  width: 900px;
+}
+@media (max-width: 1098px) {
+  .divChart {
+    width: 700px;
+  }
+}
+@media (max-width: 779px) {
+  .divChart {
+    width: 500px;
+  }
+}
+@media (max-width: 582px) {
+  .divChart {
+    width: 300px;
+  }
+}
 @media (max-width: 785px) {
   .cards {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+@media (max-width: 785px) {
+  .div-cardsSocialMedia {
     flex-wrap: wrap;
     justify-content: center;
   }

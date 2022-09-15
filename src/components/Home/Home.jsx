@@ -13,6 +13,9 @@ export default function Home() {
       {
         label: "Sales on month",
         data: SalesOnMonth.map((data) => data.sales),
+        backgroundColor: ["skyblue"],
+        borderColor: "skyblue",
+        borderWidth: 2,
       },
     ],
   });
@@ -56,8 +59,71 @@ export default function Home() {
               </Card.Body>
             </Card>
           </div>
+          <div className="mt-5 align-self-center divChart">
+            <LineChart salesData={salesData} />
+          </div>
+          <div className="d-flex justify-content-center div-cardsSocialMedia">
+            <Card id="cardSocialMedia" className="mt-5 ms-5">
+              <Card.Img
+                variant="top"
+                src="./img/Facebook.png"
+                className="imgFacebook"
+              />
+              <Card.Body>
+                <Card.Text className="d-flex justify-content-evenly">
+                  <div className="firstDivCard">
+                    <h4>89K</h4>
+                    <p>FRIENDS</p>
+                  </div>
 
-          <LineChart chartData={salesData} />
+                  <div>
+                    <h4>459</h4>
+                    <p>FEEDS</p>
+                  </div>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+            <Card id="cardSocialMedia2" className="mt-5 ms-5">
+              <Card.Img
+                variant="top"
+                src="./img/Twitter.jpg"
+                className="imgTwitter"
+              />
+              <Card.Body>
+                <Card.Text className="d-flex justify-content-evenly">
+                  <div className="firstDivCard">
+                    <h4>973K</h4>
+                    <p>FOLLOWERS</p>
+                  </div>
+
+                  <div>
+                    <h4>1792</h4>
+                    <p>TWEETS</p>
+                  </div>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+            <Card id="cardSocialMedia3" className="mt-5 ms-5">
+              <Card.Img
+                variant="top"
+                src="./img/Linkedin.jpg"
+                className="imgLinkedin"
+              />
+              <Card.Body>
+                <Card.Text className="d-flex justify-content-evenly">
+                  <div className="firstDivCard">
+                    <h4>500+</h4>
+                    <p>CONTACTS</p>
+                  </div>
+
+                  <div>
+                    <h4>292</h4>
+                    <p>FEEDS</p>
+                  </div>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </div>
         </div>
       </div>
     </div>

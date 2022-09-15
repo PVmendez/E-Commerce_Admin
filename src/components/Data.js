@@ -2,17 +2,17 @@ export const SalesOnMonth = [
   {
     id: 1,
     month: "Enero",
-    sales: 345,
+    sales: 989,
   },
   {
     id: 2,
     month: "Febrero",
-    sales: 3000,
+    sales: 2857,
   },
   {
     id: 3,
     month: "Marzo",
-    sales: 458,
+    sales: 1358,
   },
   {
     id: 4,
@@ -32,7 +32,7 @@ export const SalesOnMonth = [
   {
     id: 6,
     month: "Julio",
-    sales: 890,
+    sales: 1342,
   },
   {
     id: 8,
@@ -42,6 +42,21 @@ export const SalesOnMonth = [
   {
     id: 9,
     month: "Septiembre",
-    sales: 380,
+    sales: 1890,
+  },
+  {
+    id: 10,
+    month: "Octubre",
+    sales: 1118,
+  },
+  {
+    id: 11,
+    month: "Noviembre",
+    sales: 1363,
+  },
+  {
+    id: 12,
+    month: "Diciembre",
+    sales: 1745,
   },
 ];
