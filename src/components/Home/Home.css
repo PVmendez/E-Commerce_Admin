@@ -1,0 +1,33 @@
+.colHome {
+  background-color: #f4f6f9;
+}
+.card1 {
+  background-color: rgb(218, 67, 67);
+  border-color: rgb(218, 67, 67);
+  box-shadow: -2px 5px 29px -3px rgba(0, 0, 0, 0.75);
+  color: white;
+}
+.card2 {
+  background-color: #ffd857;
+  border-color: #ffd857;
+  box-shadow: -2px 5px 29px -3px rgba(0, 0, 0, 0.75);
+  color: white;
+}
+.card3 {
+  background-color: #3e3bde;
+  border-color: #3e3bde;
+  box-shadow: -2px 5px 29px -3px rgba(0, 0, 0, 0.75);
+  color: white;
+}
+.card4 {
+  background-color: #3b92de;
+  border-color: #3b92de;
+  box-shadow: -2px 5px 29px -3px rgba(0, 0, 0, 0.75);
+  color: white;
+}
+.title-dashboard {
+  color: #398bf7;
+  font-size: 25px;
+  font-weight: 400;
+  margin-top: 10px;
+}
