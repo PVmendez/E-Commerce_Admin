@@ -1,17 +1,29 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import "../Home/Home.css";
+import LineChart from "../LineChart";
 import Sidebar from "../Sidebar/Sidebar";
+import { useState } from "react";
+import { SalesOnMonth } from "../Data.js";
 
 export default function Home() {
+  const [salesData, setSalesData] = useState({
+    labels: SalesOnMonth.map((data) => data.month),
+    datasets: [
+      {
+        label: "Sales on month",
+        data: SalesOnMonth.map((data) => data.sales),
+      },
+    ],
+  });
   return (
     <div className="container-fluid">
       <div className="row">
         <Sidebar />
-        <div className="col colHome">
-          <p className="title-dashboard">Dashoboard</p>
-          <div className="d-flex">
-            <Card style={{ width: "18rem" }} className="card1 mt-3">
+        <div className="col-11 col-lg-10 colHome">
+          <p className="title-dashboard ms-5">Dashoboard</p>
+          <div className="d-flex cards">
+            <Card style={{ width: "18rem" }} className="card1 mt-3 ms-5">
               <Card.Body>
                 <Card.Title>
                   26K (-12.4% <i className="fas fa-long-arrow-alt-down"></i>)
@@ -44,6 +56,8 @@ export default function Home() {
               </Card.Body>
             </Card>
           </div>
+
+          <LineChart chartData={salesData} />
         </div>
       </div>
     </div>

@@ -31,3 +31,9 @@
   font-weight: 400;
   margin-top: 10px;
 }
+@media (max-width: 785px) {
+  .cards {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

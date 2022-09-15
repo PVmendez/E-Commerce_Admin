@@ -1,11 +1,11 @@
 import React from "react";
 import "../Sidebar/Sidebar.css";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   return (
     <>
-      <div className="col-2 sidebar">
+      <div className="col-1 col-lg-2 sidebar">
         <Link to="/" className="a-sidebar">
           <div className="div-sidebar">
             <i className="fas fa-tachometer-alt me-2"></i>
