@@ -9,9 +9,9 @@ export const UpdateAdminForm = () => {
     email: "",
     password: "",
   });
-  
+
   const navigate = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     const getAdmin = async () => {
@@ -20,11 +20,11 @@ export const UpdateAdminForm = () => {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: `/administrators/${id}`,
       });
-      console.log(result)
+      console.log(result);
       setUser(result.data);
-    }
+    };
     getAdmin();
-  }, [id])
+  }, [id]);
 
   const inputHandle = (e) => {
     let { name, value } = e.target;
@@ -40,13 +40,13 @@ export const UpdateAdminForm = () => {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: `/administrators/update/${id}`,
         data: user,
-      })
-      console.log(result)
+      });
+      console.log(result);
       return navigate("/administradores");
     };
     updateAdmin();
   };
-  
+
   return (
     <>
       <div className="container-fluid">
@@ -62,7 +62,7 @@ export const UpdateAdminForm = () => {
                   </label>
                   <input
                     type="text"
-                    className="form-control border mb-3"
+                    className="form-control-admin border mb-3"
                     placeholder="Tu nombre"
                     name="firstName"
                     value={user.firstName}
@@ -76,7 +76,7 @@ export const UpdateAdminForm = () => {
                   </label>
                   <input
                     type="text"
-                    className="form-control border mb-3"
+                    className="form-control-admin border mb-3"
                     placeholder="Tu apellido"
                     name="lastName"
                     value={user.lastName}
@@ -91,7 +91,7 @@ export const UpdateAdminForm = () => {
                 </label>
                 <input
                   type="email"
-                  className="form-control border mb-3"
+                  className="form-control-admin border mb-3"
                   placeholder="Ingresa tu correo electrónico"
                   name="email"
                   value={user.email}
@@ -105,7 +105,7 @@ export const UpdateAdminForm = () => {
                 </label>
                 <input
                   type="password"
-                  className="form-control border mb-3"
+                  className="form-control-admin border mb-3"
                   placeholder="Ingresa una contraseña"
                   name="password"
                   value={user.password}
@@ -125,11 +125,14 @@ export const UpdateAdminForm = () => {
               <button type="submit" className="btn-form btn-primary width-100">
                 Actualizar
               </button>
-              <button type="button" className="btn-form btn-primary width-100" onClick={() => navigate(-1)}>
+              <button
+                type="button"
+                className="btn-form btn-primary width-100"
+                onClick={() => navigate(-1)}
+              >
                 Volver
               </button>
             </form>
-            
           </div>
         </div>
       </div>

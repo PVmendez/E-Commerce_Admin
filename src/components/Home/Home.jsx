@@ -1,18 +1,6 @@
-<<<<<<< HEAD
-import "./Home.css"
-//import { Link } from "react-router-dom"
-
-export const Home = () => {
-  return (
-    <>
-      HOME
-    </>
-  );
-};
-=======
 import React from "react";
 import Card from "react-bootstrap/Card";
-import "../Home/Home.css";
+import "./Home.css";
 import LineChart from "../LineChart";
 import Sidebar from "../Sidebar/Sidebar";
 import { useState } from "react";
@@ -135,4 +123,3 @@ export default function Home() {
     </div>
   );
 }
->>>>>>> ec346bd5bf2faf5f94ac89e445c7fc53f4d412df

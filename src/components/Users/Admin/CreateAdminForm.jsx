@@ -50,7 +50,7 @@ export const CreateAdminForm = () => {
                   </label>
                   <input
                     type="text"
-                    className="form-control border mb-3"
+                    className="form-control-admin border mb-3"
                     placeholder="Tu nombre"
                     name="firstname"
                     value={user.firstname}
@@ -64,7 +64,7 @@ export const CreateAdminForm = () => {
                   </label>
                   <input
                     type="text"
-                    className="form-control border mb-3"
+                    className="form-control-admin border mb-3"
                     placeholder="Tu apellido"
                     name="lastname"
                     value={user.lastname}
@@ -79,7 +79,7 @@ export const CreateAdminForm = () => {
                 </label>
                 <input
                   type="email"
-                  className="form-control border mb-3"
+                  className="form-control-admin border mb-3"
                   placeholder="Ingresa tu correo electrónico"
                   name="email"
                   value={user.email}
@@ -93,7 +93,7 @@ export const CreateAdminForm = () => {
                 </label>
                 <input
                   type="password"
-                  className="form-control border mb-3"
+                  className="form-control-admin border mb-3"
                   placeholder="Ingresa una contraseña"
                   name="password"
                   value={user.password}
@@ -113,11 +113,14 @@ export const CreateAdminForm = () => {
               <button type="submit" className="btn-form btn-primary width-100">
                 Crear
               </button>
-              <button type="button" className="btn-form btn-primary width-100" onClick={() => navigate(-1)}>
+              <button
+                type="button"
+                className="btn-form btn-primary width-100"
+                onClick={() => navigate(-1)}
+              >
                 Volver
               </button>
             </form>
-            
           </div>
         </div>
       </div>

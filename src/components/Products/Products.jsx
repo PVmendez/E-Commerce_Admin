@@ -7,7 +7,7 @@ import axios from "axios";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import "./Products.css";
-export default function () {
+export default function Products() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -17,6 +17,7 @@ export default function () {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: "/administrators/products",
       });
+      console.log(result);
       setProducts(result.data.products);
     };
     getProducts();

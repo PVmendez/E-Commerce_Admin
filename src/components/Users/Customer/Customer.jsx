@@ -2,7 +2,7 @@ import "./Customer.css";
 import Sidebar from "../../Sidebar/Sidebar";
 import { useEffect, useState } from "react";
 import axios from "axios";
-//import { User } from "../UserAdmin";
+import { User } from "../User";
 
 export const Customer = () => {
   const [users, setUsers] = useState([]);
@@ -14,6 +14,7 @@ export const Customer = () => {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: `/customers`,
       });
+      console.log(result.data);
       setUsers(result.data);
     };
     getUsers();
@@ -63,11 +64,9 @@ export const Customer = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {
-                            //users.map((u) => (
-                               // <User users={u} key={u.id} />
-                            //))
-                            }
+                            {users.map((u) => (
+                              <User users={u} key={u.id} />
+                            ))}
                           </tbody>
                         </table>
                       </div>

@@ -7,11 +7,11 @@ root {
 }
 
 .bg-light {
-  background-color: var(--color-light)!important;
+  background-color: var(--color-light) !important;
 }
 
 .bg-dark {
-  background-color: var(--color-dark)!important;
+  background-color: var(--color-dark) !important;
 }
 
 .btn-form {
@@ -19,34 +19,34 @@ root {
   padding: 1rem 2rem;
   border-radius: 5rem;
   min-width: 10rem;
-  margin: 20px
+  margin: 20px;
 }
 
 .btn {
-  margin-right: 5px
+  margin-right: 5px;
 }
 
 .btn-outline-dark {
   border: 2px solid var(--color-dark-xx);
 }
 
-.form-control {
+.form-control-admin {
   background-color: var(--color-dark-xx);
   border: 2px solid var(--color-dark-xx);
-  border-radius: .2rem;
+  border-radius: 0.2rem;
   padding: 1.5rem 1rem;
 }
 
 @media (max-width: 575.98px) {
   .p-6 {
-      padding: 2rem;
+    padding: 2rem;
   }
 
   .contact-box {
-      padding: 0;
+    padding: 0;
   }
 
   .width-100 {
-      width: 100%;
+    width: 100%;
   }
 }

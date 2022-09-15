@@ -17,7 +17,6 @@ export default function Pedidos() {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: "/administrators/orders",
       });
-      console.log(result.data);
       setOrders(result.data.orders);
     };
     getOrders();
