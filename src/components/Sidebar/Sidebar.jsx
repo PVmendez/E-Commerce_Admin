@@ -23,10 +23,13 @@ export default function Sidebar() {
             <p className="m-0">Orders</p>
           </div>
         </Link>
-        <div className="div-sidebar">
-          <i className="fas fa-gem me-2"></i>
-          <p className="m-0">Products</p>
-        </div>
+        <Link to="/productos" className="a-sidebar">
+          <div className="div-sidebar">
+            <i className="fas fa-gem me-2"></i>
+            <p className="m-0">Products</p>
+          </div>
+        </Link>
+
         <div className="div-sidebar">
           <i className="fas fa-unlock-alt me-2"></i>
           <p className="m-0">Admin</p>

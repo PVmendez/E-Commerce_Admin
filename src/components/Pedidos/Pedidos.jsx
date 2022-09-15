@@ -6,6 +6,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
+import "./Pedidos.css";
 
 export default function Pedidos() {
   const [orders, setOrders] = useState([]);
@@ -33,7 +34,7 @@ export default function Pedidos() {
   };
 
   return (
-    <div className="row w-100">
+    <div className="row rowEdit">
       <Sidebar />
       <div className="col-10 p-0">
         <div className="px-3">
