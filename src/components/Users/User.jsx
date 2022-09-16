@@ -19,7 +19,6 @@ export const User = ({ users }) => {
       return navigate("/login");
     }
     navigate("/administradores");
-    }
   };
 
   const handleDeleteCustomer = () => {};

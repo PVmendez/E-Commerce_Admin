@@ -42,13 +42,10 @@ export default function Pedidos() {
         Authorization: `Bearer ${userStore.token}`,
       },
     });
-<<<<<<< HEAD
-=======
     if (result.data.error) {
       navigate("/login");
     }
     console.log("order", result.data);
->>>>>>> 8b66e7d30e7cb0e4e136dc3845cfc023d8925a92
   };
 
   return (
