@@ -7,8 +7,14 @@ import axios from "axios";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import "./Products.css";
+<<<<<<< HEAD
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+=======
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+
+>>>>>>> f731ec6e7bae064985665bdb9914193742abbc0b
 export default function Products() {
   const [products, setProducts] = useState([]);
   const userStore = useSelector((state) => state.user[0]);
@@ -50,10 +56,35 @@ export default function Products() {
       },
     });
   };
+
+  const deleteProduct = async (id) => {
+    const result = await axios({
+      method: "DELETE",
+      baseURL: process.env.REACT_APP_API_BASE_URL,
+      url: `/administrators/products/${id}`,
+    });
+  };
+  const showAlert = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteProduct(id);
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+  };
   return (
     <div className="row rowEdit">
       <Sidebar />
       <div className="col-10">
+        <Link to="/productos/crear">Crear nuevo producto</Link>
         <Accordion defaultActiveKey={0}>
           {products.map((product, index) => {
             let changes = {
@@ -181,6 +212,15 @@ export default function Products() {
                     </div>
                     <Button variant={"success"} type="submit" className="mt-3">
                       Actualizar
+                    </Button>
+                    <Button
+                      className="mt-3"
+                      variant={"dark"}
+                      onClick={() => {
+                        showAlert(product.id);
+                      }}
+                    >
+                      Eliminar
                     </Button>
                   </form>
                 </Accordion.Body>
