@@ -7,14 +7,11 @@ import axios from "axios";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import "./Products.css";
-<<<<<<< HEAD
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-=======
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
->>>>>>> f731ec6e7bae064985665bdb9914193742abbc0b
 export default function Products() {
   const [products, setProducts] = useState([]);
   const userStore = useSelector((state) => state.user[0]);
