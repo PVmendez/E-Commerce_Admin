@@ -3,19 +3,29 @@ import Sidebar from "../../Sidebar/Sidebar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { User } from "../User";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const Customer = () => {
   const [users, setUsers] = useState([]);
-
+  const userStore = useSelector((state) => state.user[0]);
+  const navigate = useNavigate();
   useEffect(() => {
     const getUsers = async () => {
       const result = await axios({
         method: "GET",
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: `/customers`,
+        headers: {
+          Authorization: `Bearer ${userStore.token}`,
+        },
       });
-      console.log(result.data);
-      setUsers(result.data);
+      if (result.data.error) {
+        navigate("/login");
+      } else {
+        console.log(result.data);
+        setUsers(result.data);
+      }
     };
     getUsers();
   }, []);

@@ -7,18 +7,29 @@ import axios from "axios";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import "./Products.css";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 export default function Products() {
   const [products, setProducts] = useState([]);
-
+  const userStore = useSelector((state) => state.user[0]);
+  const navigate = useNavigate();
   useEffect(() => {
+    console.log(userStore);
     const getProducts = async () => {
       const result = await axios({
         method: "GET",
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: "/administrators/products",
+        headers: {
+          Authorization: `Bearer ${userStore.token}`,
+        },
       });
-      console.log(result);
-      setProducts(result.data.products);
+      if (result.data.error) {
+        navigate("/login");
+      } else {
+        setProducts(result.data.products);
+        console.log(result);
+      }
     };
     getProducts();
   }, []);
@@ -33,6 +44,9 @@ export default function Products() {
       data: {
         data: changes,
         id: id,
+      },
+      headers: {
+        Authorization: `Bearer ${userStore.token}`,
       },
     });
   };

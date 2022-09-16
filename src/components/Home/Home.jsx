@@ -5,6 +5,10 @@ import LineChart from "../LineChart";
 import Sidebar from "../Sidebar/Sidebar";
 import { useState } from "react";
 import { SalesOnMonth } from "../Data.js";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [salesData, setSalesData] = useState({
@@ -19,6 +23,24 @@ export default function Home() {
       },
     ],
   });
+  const userStore = useSelector((state) => state.user[0]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const checkAdmin = async () => {
+      const result = await axios({
+        method: "GET",
+        baseURL: process.env.REACT_APP_API_BASE_URL,
+        url: "/administrators",
+        headers: {
+          Authorization: `Bearer ${userStore.token}`,
+        },
+      });
+      if (result.data.error) {
+        navigate("/login");
+      }
+    };
+    checkAdmin();
+  }, []);
   return (
     <div className="container-fluid">
       <div className="row">
