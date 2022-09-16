@@ -30,17 +30,12 @@ export const CreateAdminForm = () => {
           Authorization: `Bearer ${userStore.token}`,
         },
       });
-<<<<<<< HEAD
-
-      return navigate("/administradores");
-=======
       if (result.data.error) {
         navigate("/login");
       } else {
         console.log(result);
         return navigate("/administradores");
       }
->>>>>>> 8b66e7d30e7cb0e4e136dc3845cfc023d8925a92
     };
     createAdmin();
   };
@@ -58,7 +53,7 @@ export const CreateAdminForm = () => {
             <form onSubmit={(e) => handleSubmit(e)}>
               <div className="form-row mb-2">
                 <div className="form-group col-mb-3">
-                  <label className="font-weight-bold">
+                  <label className="font-weight-bold d-block">
                     Nombre <span className="text-danger">*</span>
                   </label>
                   <input
@@ -72,7 +67,7 @@ export const CreateAdminForm = () => {
                   />
                 </div>
                 <div className="form-group col-mb-3">
-                  <label className="font-weight-bold ">
+                  <label className="font-weight-bold d-block ">
                     Apellido <span className="text-danger">*</span>
                   </label>
                   <input
@@ -87,7 +82,7 @@ export const CreateAdminForm = () => {
                 </div>
               </div>
               <div className="form-group mb-3">
-                <label className="font-weight-bold">
+                <label className="font-weight-bold d-block">
                   Correo electrónico <span className="text-danger">*</span>
                 </label>
                 <input
@@ -101,7 +96,7 @@ export const CreateAdminForm = () => {
                 />
               </div>
               <div className="form-group mb-3">
-                <label className="font-weight-bold ">
+                <label className="font-weight-bold d-block ">
                   Contraseña <span className="text-danger ">*</span>
                 </label>
                 <input
