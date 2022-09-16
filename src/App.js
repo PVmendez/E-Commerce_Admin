@@ -11,6 +11,7 @@ import { CreateAdminForm } from "./components/Users/Admin/CreateAdminForm";
 import { UpdateAdminForm } from "./components/Users/Admin/UpdateAdminForm";
 import Pedidos from "./components/Pedidos/Pedidos";
 import Products from "./components/Products/Products";
+import CreateProduct from "./components/CreateProduct/CreateProduct";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         />
         <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/productos" element={<Products />} />
+        <Route path="/productos/crear" element={<CreateProduct />} />
       </Routes>
     </>
   );
