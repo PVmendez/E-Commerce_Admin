@@ -1,23 +1,28 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export const User = ({ users }) => {
   const navigate = useNavigate();
-
+  const userStore = useSelector((state) => state.user[0]);
   const handleDeleteAdmin = () => {
     const result = axios({
       method: "DELETE",
       baseURL: process.env.REACT_APP_API_BASE_URL,
       url: `/administrators/delete/${users.id}`,
-      data: users
+      data: users,
+      headers: {
+        Authorization: `Bearer ${userStore.token}`,
+      },
     });
-    navigate("/administradores")
-   
+    if (result.data.error) {
+      return navigate("/login");
+    }
+    navigate("/administradores");
+    }
   };
 
-  const handleDeleteCustomer = () => {
-
-  }
+  const handleDeleteCustomer = () => {};
 
   return (
     <>
@@ -31,24 +36,29 @@ export const User = ({ users }) => {
             <td>{users.address}</td>
             <td>{users.phone}</td>
             <td>
-            <button className="btn btn-primary">Update</button>
-            <button className="btn btn-danger" onClick={handleDeleteCustomer}>
-              Delete
-            </button>
-        </td>
+              <button className="btn btn-primary">Update</button>
+              <button className="btn btn-danger" onClick={handleDeleteCustomer}>
+                Delete
+              </button>
+            </td>
           </>
         ) : (
           <>
-          <td>
-            <button className="btn btn-primary" onClick={() => navigate(`/administradores/actualizar/${users.id}`)}>Update</button>
-            <button className="btn btn-danger" onClick={handleDeleteAdmin}>
-              Delete
-            </button>
-          </td>
-            
+            <td>
+              <button
+                className="btn btn-primary"
+                onClick={() =>
+                  navigate(`/administradores/actualizar/${users.id}`)
+                }
+              >
+                Update
+              </button>
+              <button className="btn btn-danger" onClick={handleDeleteAdmin}>
+                Delete
+              </button>
+            </td>
           </>
         )}
-        
       </tr>
     </>
   );

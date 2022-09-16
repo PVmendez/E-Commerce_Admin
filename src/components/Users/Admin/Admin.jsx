@@ -4,19 +4,27 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { User } from "../User";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const Admin = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
-
+  const userStore = useSelector((state) => state.user[0]);
   useEffect(() => {
     const getUsers = async () => {
       const result = await axios({
         method: "GET",
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: `/administrators`,
+        headers: {
+          Authorization: `Bearer ${userStore.token}`,
+        },
       });
-      setUsers(result.data);
+      if (result.data.error) {
+        navigate("/login");
+      } else {
+        setUsers(result.data);
+      }
     };
     getUsers();
   }, []);

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 export const UpdateAdminForm = () => {
@@ -9,7 +10,7 @@ export const UpdateAdminForm = () => {
     email: "",
     password: "",
   });
-
+  const userStore = useSelector((state) => state.user[0]);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -19,9 +20,21 @@ export const UpdateAdminForm = () => {
         method: "GET",
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: `/administrators/${id}`,
+        headers: {
+          Authorization: `Bearer ${userStore.token}`,
+        },
       });
+<<<<<<< HEAD
   
       setUser(result.data);
+=======
+      if (result.data.error) {
+        navigate("/login");
+      } else {
+        console.log(result);
+        setUser(result.data);
+      }
+>>>>>>> 8b66e7d30e7cb0e4e136dc3845cfc023d8925a92
     };
     getAdmin();
   }, [id]);
@@ -40,6 +53,9 @@ export const UpdateAdminForm = () => {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: `/administrators/update/${id}`,
         data: user,
+        headers: {
+          Authorization: `Bearer ${userStore.token}`,
+        },
       });
 
       return navigate("/administradores");

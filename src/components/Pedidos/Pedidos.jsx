@@ -7,16 +7,26 @@ import Card from "react-bootstrap/Card";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
 import "./Pedidos.css";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Pedidos() {
   const [orders, setOrders] = useState([]);
+  const userStore = useSelector((state) => state.user[0]);
+  const navigate = useNavigate();
   useEffect(() => {
     const getOrders = async () => {
       const result = await axios({
         method: "GET",
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: "/administrators/orders",
+        headers: {
+          Authorization: `Bearer ${userStore.token}`,
+        },
       });
+      if (result.data.error) {
+       return navigate("/login");
+      }
       setOrders(result.data.orders);
     };
     getOrders();
@@ -28,7 +38,17 @@ export default function Pedidos() {
       baseURL: process.env.REACT_APP_API_BASE_URL,
       url: "/administrators/orders",
       data: { id, state },
+      headers: {
+        Authorization: `Bearer ${userStore.token}`,
+      },
     });
+<<<<<<< HEAD
+=======
+    if (result.data.error) {
+      navigate("/login");
+    }
+    console.log("order", result.data);
+>>>>>>> 8b66e7d30e7cb0e4e136dc3845cfc023d8925a92
   };
 
   return (
