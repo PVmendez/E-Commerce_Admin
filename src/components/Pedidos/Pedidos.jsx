@@ -29,7 +29,6 @@ export default function Pedidos() {
       url: "/administrators/orders",
       data: { id, state },
     });
-    console.log("order", result.data);
   };
 
   return (

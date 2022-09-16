@@ -20,7 +20,7 @@ export const UpdateAdminForm = () => {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: `/administrators/${id}`,
       });
-      console.log(result);
+  
       setUser(result.data);
     };
     getAdmin();
@@ -41,7 +41,7 @@ export const UpdateAdminForm = () => {
         url: `/administrators/update/${id}`,
         data: user,
       });
-      console.log(result);
+
       return navigate("/administradores");
     };
     updateAdmin();

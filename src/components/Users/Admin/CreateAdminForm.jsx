@@ -26,7 +26,7 @@ export const CreateAdminForm = () => {
         url: `/administrators/register`,
         data: { user: user },
       });
-      console.log(result);
+
       return navigate("/administradores");
     };
     createAdmin();

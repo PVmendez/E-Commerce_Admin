@@ -30,7 +30,7 @@ export const Register = () => {
         url: `/administrators/register`,
         data: { user: user },
       });
-      console.log(result);
+     
       if (result.status === 201) {
         return navigate("/login");
       } 

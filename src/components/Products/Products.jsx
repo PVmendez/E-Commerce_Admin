@@ -20,15 +20,14 @@ export default function Products() {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: "/administrators/products",
       });
-      console.log(result);
+
       setProducts(result.data.products);
     };
     getProducts();
   }, []);
 
   const updateProduct = async (id, changes) => {
-    console.log(id);
-    console.log(changes);
+
     const result = await axios({
       method: "PATCH",
       baseURL: process.env.REACT_APP_API_BASE_URL,

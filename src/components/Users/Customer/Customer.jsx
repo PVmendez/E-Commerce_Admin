@@ -14,7 +14,7 @@ export const Customer = () => {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: `/customers`,
       });
-      console.log(result.data);
+
       setUsers(result.data);
     };
     getUsers();

@@ -12,7 +12,7 @@ export const User = ({ users }) => {
       data: users
     });
     navigate("/administradores")
-    console.log(result)
+   
   };
 
   const handleDeleteCustomer = () => {
