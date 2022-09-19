@@ -24,20 +24,14 @@ export const UpdateAdminForm = () => {
           Authorization: `Bearer ${userStore.token}`,
         },
       });
-<<<<<<< HEAD
-  
-      setUser(result.data);
-=======
       if (result.data.error) {
-        navigate("/login");
-      } else {
-        console.log(result);
-        setUser(result.data);
-      }
->>>>>>> 8b66e7d30e7cb0e4e136dc3845cfc023d8925a92
+        return navigate("/login");
+      } 
+      setUser(result.data);
+      
     };
     getAdmin();
-  }, [id]);
+  }, [id, userStore.token, navigate]);
 
   const inputHandle = (e) => {
     let { name, value } = e.target;

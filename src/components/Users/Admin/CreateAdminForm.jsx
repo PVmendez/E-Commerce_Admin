@@ -30,17 +30,11 @@ export const CreateAdminForm = () => {
           Authorization: `Bearer ${userStore.token}`,
         },
       });
-<<<<<<< HEAD
-
-      return navigate("/administradores");
-=======
       if (result.data.error) {
-        navigate("/login");
-      } else {
-        console.log(result);
-        return navigate("/administradores");
-      }
->>>>>>> 8b66e7d30e7cb0e4e136dc3845cfc023d8925a92
+        return navigate("/login");
+      } 
+      return navigate("/administradores");
+
     };
     createAdmin();
   };
