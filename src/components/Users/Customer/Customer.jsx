@@ -22,7 +22,7 @@ export const Customer = () => {
       });
       if (result.data.error) {
         return navigate("/login");
-      } 
+      }
       setUsers(result.data);
     };
     getUsers();

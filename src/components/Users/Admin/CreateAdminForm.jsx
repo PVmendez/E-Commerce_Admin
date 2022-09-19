@@ -52,7 +52,7 @@ export const CreateAdminForm = () => {
             <form onSubmit={(e) => handleSubmit(e)}>
               <div className="form-row mb-2">
                 <div className="form-group col-mb-3">
-                  <label className="font-weight-bold">
+                  <label className="font-weight-bold d-block">
                     Nombre <span className="text-danger">*</span>
                   </label>
                   <input
@@ -66,7 +66,7 @@ export const CreateAdminForm = () => {
                   />
                 </div>
                 <div className="form-group col-mb-3">
-                  <label className="font-weight-bold ">
+                  <label className="font-weight-bold d-block ">
                     Apellido <span className="text-danger">*</span>
                   </label>
                   <input
@@ -81,7 +81,7 @@ export const CreateAdminForm = () => {
                 </div>
               </div>
               <div className="form-group mb-3">
-                <label className="font-weight-bold">
+                <label className="font-weight-bold d-block">
                   Correo electrónico <span className="text-danger">*</span>
                 </label>
                 <input
@@ -95,7 +95,7 @@ export const CreateAdminForm = () => {
                 />
               </div>
               <div className="form-group mb-3">
-                <label className="font-weight-bold ">
+                <label className="font-weight-bold d-block ">
                   Contraseña <span className="text-danger ">*</span>
                 </label>
                 <input
