@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const User = ({ users }) => {
   const navigate = useNavigate();
-  const userStore = useSelector((state) => state.user[0]);
+  const adminStore = useSelector((state) => state.admin[0]);
   const handleDeleteAdmin = () => {
     const result = axios({
       method: "DELETE",
@@ -12,7 +12,7 @@ export const User = ({ users }) => {
       url: `/administrators/delete/${users.id}`,
       data: users,
       headers: {
-        Authorization: `Bearer ${userStore.token}`,
+        Authorization: `Bearer ${adminStore.token}`,
       },
     });
     if (result.data.error) {

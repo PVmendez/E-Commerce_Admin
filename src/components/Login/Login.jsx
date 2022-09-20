@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { login } from "../../Redux/userSlice/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { loginAdmin } from "../../Redux/userSlice/adminSlice";
 import "./Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export const Login = () => {
   const [user, setUser] = useState({
@@ -13,13 +14,19 @@ export const Login = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const adminState = useSelector((state) => state.admin[0]);
   const inputHandle = (e) => {
     let { name, value } = e.target;
     let newUser = { ...user, [name]: value };
     setUser(newUser);
   };
-
+  useEffect(() => {
+    if (adminState) {
+      navigate("/");
+    } else {
+      return;
+    }
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
     const getUserLogin = async () => {
@@ -29,8 +36,8 @@ export const Login = () => {
         url: `/users/login`,
         data: { user: user },
       });
-
-      dispatch(login(result.data));
+      console.log(result.data);
+      dispatch(loginAdmin(result.data));
       result ? navigate("/") : navigate("/register");
     };
     getUserLogin();
@@ -43,15 +50,10 @@ export const Login = () => {
           <div className="front">
             <div className="text">
               <span className="text-1">ADMIN</span>
-              <span className="text-2"></span>
-            </div>
-          </div>
-          <div className="back">
-            <div className="text">
-              <span className="text-1">
-                Complete miles of journey <br /> with one step
+              <span className="text-2">Credenciales:</span>
+              <span className="text-2">
+                Email: admin@admin - Password: admin
               </span>
-              <span className="text-2">Let's get started</span>
             </div>
           </div>
         </div>
@@ -83,15 +85,8 @@ export const Login = () => {
                       required
                     />
                   </div>
-                  <div className="text">
-                    <Link to="#">Olvidaste tu contraseña?</Link>
-                  </div>
                   <div className="button input-box">
                     <input type="submit" value="Iniciar Sesión" />
-                  </div>
-                  <div className="text sign-up-text">
-                    ¿Todavía no tienes cuenta?{" "}
-                    <Link to="/registro">Registrate</Link>
                   </div>
                 </div>
               </form>
