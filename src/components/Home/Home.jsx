@@ -23,7 +23,7 @@ export default function Home() {
       },
     ],
   });
-  const userStore = useSelector((state) => state.user[0]);
+  const adminStore = useSelector((state) => state.admin[0]);
   const navigate = useNavigate();
   useEffect(() => {
     const checkAdmin = async () => {
@@ -32,15 +32,15 @@ export default function Home() {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: "/administrators",
         headers: {
-          Authorization: `Bearer ${userStore.token}`,
+          Authorization: `Bearer ${adminStore.token}`,
         },
       });
       if (result.data.error) {
         navigate("/login");
       }
     };
-    // userStore.token ? checkAdmin() : navigate("/login");
-  }, [userStore, navigate]);
+    adminStore.token ? checkAdmin() : navigate("/login");
+  }, [adminStore, navigate]);
   return (
     <div className="container-fluid">
       <div className="row">

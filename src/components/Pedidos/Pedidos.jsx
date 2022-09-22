@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Pedidos() {
   const [orders, setOrders] = useState([]);
-  const userStore = useSelector((state) => state.user[0]);
+  const adminStore = useSelector((state) => state.admin[0]);
   const navigate = useNavigate();
   useEffect(() => {
     const getOrders = async () => {
@@ -21,7 +21,7 @@ export default function Pedidos() {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: "/administrators/orders",
         headers: {
-          Authorization: `Bearer ${userStore.token}`,
+          Authorization: `Bearer ${adminStore.token}`,
         },
       });
       if (result.data.error) {
@@ -39,7 +39,7 @@ export default function Pedidos() {
       url: "/administrators/orders",
       data: { id, state },
       headers: {
-        Authorization: `Bearer ${userStore.token}`,
+        Authorization: `Bearer ${adminStore.token}`,
       },
     });
     if (result.data.error) {
@@ -63,14 +63,14 @@ export default function Pedidos() {
               .map((order, index, array) => {
                 let orderPrice = 0;
                 return (
-                  <Accordion.Item eventKey={index}>
+                  <Accordion.Item key={order.id} eventKey={index}>
                     <Accordion.Header>
                       Pedido #{array.length - 1 * index}
                     </Accordion.Header>
                     <Accordion.Body>
                       <Card>
                         <Card.Body>
-                          <div className="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between flex-column flex-md-row">
                             Customer:{" "}
                             <span>
                               Firstname: {order.customerData.firstName}
@@ -85,7 +85,7 @@ export default function Pedidos() {
                         <Accordion.Item eventKey={-(array.length + 1 * index)}>
                           <Accordion.Header>Productos</Accordion.Header>
                           <Accordion.Body>
-                            <Table striped bordered hover>
+                            <Table striped bordered hover responsive>
                               <thead>
                                 <tr>
                                   <th>Nombre</th>
@@ -102,7 +102,7 @@ export default function Pedidos() {
                                     ).toFixed(12)
                                   );
                                   return (
-                                    <tr>
+                                    <tr key={item.id}>
                                       <td>{item.product.name}</td>
                                       <td>${item.product.price}</td>
                                       <td>{item.quantity}</td>

@@ -10,7 +10,7 @@ export const UpdateAdminForm = () => {
     email: "",
     password: "",
   });
-  const userStore = useSelector((state) => state.user[0]);
+  const adminStore = useSelector((state) => state.admin[0]);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -21,7 +21,7 @@ export const UpdateAdminForm = () => {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: `/administrators/${id}`,
         headers: {
-          Authorization: `Bearer ${userStore.token}`,
+          Authorization: `Bearer ${adminStore.token}`,
         },
       });
       if (result.data.error) {
@@ -48,7 +48,7 @@ export const UpdateAdminForm = () => {
         url: `/administrators/update/${id}`,
         data: user,
         headers: {
-          Authorization: `Bearer ${userStore.token}`,
+          Authorization: `Bearer ${adminStore.token}`,
         },
       });
 

@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
-  const userStore = useSelector((state) => state.user[0]);
+  const adminStore = useSelector((state) => state.admin[0]);
   const navigate = useNavigate();
   useEffect(() => {
     const getProducts = async () => {
@@ -23,7 +23,7 @@ export default function Products() {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: "/administrators/products",
         headers: {
-          Authorization: `Bearer ${userStore.token}`,
+          Authorization: `Bearer ${adminStore.token}`,
         },
       });
       if (result.data.error) {
@@ -34,17 +34,27 @@ export default function Products() {
     getProducts();
   }, []);
 
-  const updateProduct = async (id, changes) => {
+  const updateProduct = async (id, e) => {
+    console.log(e.target[2].files[0]);
+    const form = new FormData();
+    form.append(e.target[0].name, e.target[0].value);
+    form.append(e.target[1].name, e.target[1].value);
+    if (e.target[2].files.length > 0) {
+      form.append(e.target[2].name, e.target[2].files[0]);
+    }
+    form.append(e.target[3].name, e.target[3].value);
+    form.append(e.target[4].name, e.target[4].value);
+    form.append(e.target[5].name, e.target[5].value);
+    form.append(e.target[6].name, e.target[6].value);
+    form.append("id", id);
     const result = await axios({
       method: "PATCH",
       baseURL: process.env.REACT_APP_API_BASE_URL,
       url: "/administrators/products",
-      data: {
-        data: changes,
-        id: id,
-      },
+      data: form,
       headers: {
-        Authorization: `Bearer ${userStore.token}`,
+        Authorization: `Bearer ${adminStore.token}`,
+        "Content-Type": "multipart/form-data",
       },
     });
   };
@@ -91,7 +101,7 @@ export default function Products() {
               <Accordion.Item key={index} eventKey={index}>
                 <Accordion.Header>{product.name}</Accordion.Header>
                 <Accordion.Body>
-                  <Table striped bordered hover>
+                  <Table striped bordered hover responsive>
                     <thead>
                       <tr>
                         <th>Nombre</th>
@@ -124,14 +134,16 @@ export default function Products() {
                     </tbody>
                   </Table>
                   <form
+                    encType="multipart/form-data"
                     onSubmit={(e) => {
                       e.preventDefault();
-                      updateProduct(product.id, changes);
+                      updateProduct(product.id, e);
                     }}
                   >
-                    <div className="d-flex">
+                    <div className="d-flex flex-column flex-md-row">
                       <FloatingLabel controlId="floatingName" label="Nombre">
                         <Form.Control
+                          name="name"
                           onChange={(e) => {
                             changes = { ...changes, name: e.target.value };
                           }}
@@ -145,6 +157,7 @@ export default function Products() {
                         label="Descripción"
                       >
                         <Form.Control
+                          name="description"
                           onChange={(e) => {
                             changes = {
                               ...changes,
@@ -156,25 +169,39 @@ export default function Products() {
                           defaultValue={product.description}
                         />
                       </FloatingLabel>
-                      {/* <FloatingLabel
-                    controlId="floatingInput"
-                    label="Nombre"
-                    
-                    >
-                    <Form.Control type="text" placeholder="Nombre" />
-                    </FloatingLabel> */}
+                      <label
+                        htmlFor="file-upload"
+                        className="custom-file-upload d-flex align-items-center"
+                      >
+                        <i className="fa fa-cloud-upload"></i> Cambiar Imagen
+                      </label>
+                      <Form.Control
+                        name="image"
+                        type="file"
+                        size="lg"
+                        id="file-upload"
+                        onChange={(e) => {
+                          console.log(e.target.files);
+                          changes = { ...changes, image: e.target.files[0] };
+                        }}
+                      />
                       <FloatingLabel controlId="floatingPrice" label="Precio">
                         <Form.Control
+                          name="price"
                           type="number"
+                          step=".01"
                           placeholder="Precio"
                           defaultValue={product.price}
                           onChange={(e) => {
                             changes = { ...changes, price: e.target.value };
                           }}
+                          min="1.00"
+                          max="99.99"
                         />
                       </FloatingLabel>
                       <FloatingLabel controlId="floatingStock" label="Stock">
                         <Form.Control
+                          name="stock"
                           type="number"
                           placeholder="Stock"
                           defaultValue={product.stock}
@@ -184,6 +211,7 @@ export default function Products() {
                         />
                       </FloatingLabel>
                       <Form.Select
+                        name="categoryId"
                         aria-label="Categoria"
                         defaultValue={product.category.id}
                         onChange={(e) => {
@@ -194,6 +222,7 @@ export default function Products() {
                         <option value="2">Premium</option>
                       </Form.Select>
                       <Form.Select
+                        name="popular"
                         aria-label="Destacado"
                         defaultValue={product.popular.toString()}
                         onChange={(e) => {

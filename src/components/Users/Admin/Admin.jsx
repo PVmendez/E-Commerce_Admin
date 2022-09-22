@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 export const Admin = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
-  const userStore = useSelector((state) => state.user[0]);
+  const adminStore = useSelector((state) => state.admin[0]);
   useEffect(() => {
     const getUsers = async () => {
       const result = await axios({
@@ -17,7 +17,7 @@ export const Admin = () => {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: `/administrators`,
         headers: {
-          Authorization: `Bearer ${userStore.token}`,
+          Authorization: `Bearer ${adminStore.token}`,
         },
       });
       if (result.data.error) {
