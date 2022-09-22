@@ -21,7 +21,13 @@ function NavbarAdmin() {
 
       <div className="d-flex align-items-center ">
         <i className="fas fa-search" style={{ color: "grey" }}></i>
-        <button className="btn btn-primary" onClick={() => {}}>
+        <button
+          className="btn btn-primary"
+          onClick={() => {
+            navigate("/login");
+            dispatch(logoutAdmin());
+          }}
+        >
           <i className="fas fa-sign-out-alt"></i>
         </button>
       </div>
