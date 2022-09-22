@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Customer = () => {
   const [users, setUsers] = useState([]);
-  const userStore = useSelector((state) => state.user[0]);
+  const adminStore = useSelector((state) => state.admin[0]);
   const navigate = useNavigate();
   useEffect(() => {
     const getUsers = async () => {
@@ -17,7 +17,7 @@ export const Customer = () => {
         baseURL: process.env.REACT_APP_API_BASE_URL,
         url: `/customers`,
         headers: {
-          Authorization: `Bearer ${userStore.token}`,
+          Authorization: `Bearer ${adminStore.token}`,
         },
       });
       if (result.data.error) {

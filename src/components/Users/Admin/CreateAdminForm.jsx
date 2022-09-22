@@ -11,7 +11,7 @@ export const CreateAdminForm = () => {
     password: "",
   });
   const navigate = useNavigate();
-  const userStore = useSelector((state) => state.user[0]);
+  const adminStore = useSelector((state) => state.admin[0]);
   const inputHandle = (e) => {
     let { name, value } = e.target;
     let newUser = { ...user, [name]: value };
@@ -27,14 +27,21 @@ export const CreateAdminForm = () => {
         url: `/administrators/register`,
         data: { user: user },
         headers: {
-          Authorization: `Bearer ${userStore.token}`,
+          Authorization: `Bearer ${adminStore.token}`,
         },
       });
       if (result.data.error) {
+<<<<<<< HEAD
         return navigate("/login");
       } 
       return navigate("/administradores");
 
+=======
+        navigate("/login");
+      } else {
+        return navigate("/administradores");
+      }
+>>>>>>> c2a2ebed3202a9b059f9470a7a93666a80d86f3c
     };
     createAdmin();
   };

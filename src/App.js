@@ -12,31 +12,85 @@ import { UpdateAdminForm } from "./components/Users/Admin/UpdateAdminForm";
 import Pedidos from "./components/Pedidos/Pedidos";
 import Products from "./components/Products/Products";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <>
       <NavbarAdmin />
       <Routes>
-        <Route exact path="/" element={<Home />} />
         <Route path="*" element={<ErrorPage />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/registro" element={<Register />} />
-        <Route exact path="/clientes" element={<Customer />} />
-        <Route exact path="/administradores" element={<Admin />} />
+        {/* <Route exact path="/registro" element={<Register />} /> */}
+        <Route
+          exact
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/clientes"
+          element={
+            <ProtectedRoute>
+              <Customer />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/administradores"
+          element={
+            <ProtectedRoute>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
         <Route
           exact
           path="/administradores/crear"
-          element={<CreateAdminForm />}
+          element={
+            <ProtectedRoute>
+              <CreateAdminForm />
+            </ProtectedRoute>
+          }
         />
         <Route
           exact
           path="/administradores/actualizar/:id"
-          element={<UpdateAdminForm />}
+          element={
+            <ProtectedRoute>
+              <UpdateAdminForm />
+            </ProtectedRoute>
+          }
         />
-        <Route path="/pedidos" element={<Pedidos />} />
-        <Route path="/productos" element={<Products />} />
-        <Route path="/productos/crear" element={<CreateProduct />} />
+        <Route
+          path="/pedidos"
+          element={
+            <ProtectedRoute>
+              <Pedidos />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/productos"
+          element={
+            <ProtectedRoute>
+              <Products />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/productos/crear"
+          element={
+            <ProtectedRoute>
+              <CreateProduct />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
