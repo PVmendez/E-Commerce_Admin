@@ -26,12 +26,13 @@ export const Login = () => {
       const result = await axios({
         method: "POST",
         baseURL: process.env.REACT_APP_API_BASE_URL,
-        url: `/users/login`,
+        url: `/administrators/login`,
         data: { user: user },
       });
 
       dispatch(login(result.data));
-      result ? navigate("/") : navigate("/register");
+      if(result) navigate("/")
+      navigate("/login")
     };
     getUserLogin();
   };

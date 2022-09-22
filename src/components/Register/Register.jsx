@@ -27,7 +27,7 @@ export const Register = () => {
       const result = await axios({
         method: "POST",
         baseURL: process.env.REACT_APP_API_BASE_URL,
-        url: `/users/register`,
+        url: `/administrators/register`,
         data: { user: user },
       });
 

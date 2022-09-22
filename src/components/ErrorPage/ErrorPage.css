@@ -3,7 +3,7 @@
  
  .main_body{
   width: 100%; height: 100vh; 
-  background-image: url('https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1572&q=80');
+  background-image: url('');
   background-repeat: no-repeat;
   background-size: 100% 100%; 
   display: flex; 
@@ -14,7 +14,7 @@
  .center_body{
   width: 65%;
   height: 70%;
-  background-image: url('https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1572&q=80');
+  background-image: url('../../../public/img/bgError');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   display: flex; 
