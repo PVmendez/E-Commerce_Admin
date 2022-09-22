@@ -36,11 +36,10 @@ export default function Home() {
         },
       });
       if (result.data.error) {
-        console.log("errordb");
         navigate("/login");
       }
     };
-    userStore.token ? checkAdmin() : navigate("/login");
+    // userStore.token ? checkAdmin() : navigate("/login");
   }, [userStore, navigate]);
   return (
     <div className="container-fluid">

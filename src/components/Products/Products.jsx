@@ -17,7 +17,6 @@ export default function Products() {
   const userStore = useSelector((state) => state.user[0]);
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(userStore);
     const getProducts = async () => {
       const result = await axios({
         method: "GET",
@@ -31,13 +30,11 @@ export default function Products() {
         return navigate("/login");
       }
       setProducts(result.data.products);
-      
     };
     getProducts();
   }, []);
 
   const updateProduct = async (id, changes) => {
-
     const result = await axios({
       method: "PATCH",
       baseURL: process.env.REACT_APP_API_BASE_URL,
@@ -112,7 +109,9 @@ export default function Products() {
                         <td>{product.description}</td>
                         <td>
                           <img
-                            src={`./img/${product.image}`}
+                            src={
+                              process.env.BASE_URL_IMAGE + `${product.image}`
+                            }
                             alt=""
                             width={"50px"}
                           />

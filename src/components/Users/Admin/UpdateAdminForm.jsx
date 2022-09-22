@@ -27,7 +27,6 @@ export const UpdateAdminForm = () => {
       if (result.data.error) {
         navigate("/login");
       } else {
-        console.log(result);
         setUser(result.data);
       }
     };

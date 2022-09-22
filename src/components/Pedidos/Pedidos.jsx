@@ -25,7 +25,7 @@ export default function Pedidos() {
         },
       });
       if (result.data.error) {
-       return navigate("/login");
+        return navigate("/login");
       }
       setOrders(result.data.orders);
     };
@@ -45,7 +45,6 @@ export default function Pedidos() {
     if (result.data.error) {
       navigate("/login");
     }
-    console.log("order", result.data);
   };
 
   return (

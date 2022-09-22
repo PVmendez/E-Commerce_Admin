@@ -33,7 +33,6 @@ export const CreateAdminForm = () => {
       if (result.data.error) {
         navigate("/login");
       } else {
-        console.log(result);
         return navigate("/administradores");
       }
     };
