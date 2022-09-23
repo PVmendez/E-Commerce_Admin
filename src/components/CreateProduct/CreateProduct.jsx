@@ -3,19 +3,37 @@ import Sidebar from "../Sidebar/Sidebar";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Form, Navbar } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import NavbarAdmin from "../Navbar/NavbarAdmin";
+import { useSelector } from "react-redux";
 
 export default function CreateProduct() {
   const navigate = useNavigate();
   const [data, setData] = useState({ category: "1", popular: "false" });
+  const [image, setImage] = useState(null);
+  const adminStore = useSelector((state) => state.admin[0]);
 
-  const createProduct = async (data) => {
+  const createProduct = async (target) => {
+    let form;
+    if (image) {
+      form = new FormData(target);
+    } else {
+      form = new FormData();
+      form.append("name", data.name);
+      form.append("description", data.description);
+      form.append("price", data.price);
+      form.append("stock", data.stock);
+      form.append("category", data.category);
+      form.append("popular", data.popular);
+    }
     const result = await axios({
       method: "POST",
       baseURL: process.env.REACT_APP_API_BASE_URL,
       url: `/administrators/products`,
-      data: data,
+      headers: {
+        Authorization: `Bearer ${adminStore.token}`,
+      },
+      data: form,
     });
     console.log(result);
     return navigate("/productos");
@@ -36,7 +54,7 @@ export default function CreateProduct() {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  createProduct(data);
+                  createProduct(e.target);
                 }}
               >
                 <div className="form-row mb-2">
@@ -54,6 +72,7 @@ export default function CreateProduct() {
                   </div>
                   <div className="form-group col-mb-3">
                     <input
+                      required
                       type="text"
                       className="form-control-admin border mb-3"
                       placeholder="Descripcion"
@@ -66,6 +85,7 @@ export default function CreateProduct() {
                 </div>
                 <div className="form-group mb-3">
                   <input
+                    required
                     type="number"
                     className="form-control-admin border mb-3"
                     placeholder="Precio"
@@ -77,6 +97,7 @@ export default function CreateProduct() {
                 </div>
                 <div className="form-group mb-3">
                   <input
+                    required
                     type="number"
                     className="form-control-admin border mb-3"
                     placeholder="Stock"
@@ -86,7 +107,17 @@ export default function CreateProduct() {
                     }}
                   />
                 </div>
+                <div className="form-group mb-3">
+                  <input
+                    required
+                    type="file"
+                    className="form-control-admin border mb-3"
+                    name="image"
+                    onChange={(e) => setImage(e.target.value)}
+                  />
+                </div>
                 <Form.Select
+                  required
                   aria-label="Categoria"
                   className="form-group mb-3"
                   onChange={(e) => {
@@ -98,6 +129,7 @@ export default function CreateProduct() {
                   <option value="2">Premium</option>
                 </Form.Select>
                 <Form.Select
+                  required
                   aria-label="Destacado"
                   className="form-group mb-3"
                   onChange={(e) => {

@@ -16,6 +16,7 @@ import NavbarAdmin from "../Navbar/NavbarAdmin";
 export default function Products() {
   const [products, setProducts] = useState([]);
   const adminStore = useSelector((state) => state.admin[0]);
+  const [image, setImage] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
     const getProducts = async () => {
@@ -36,12 +37,11 @@ export default function Products() {
   }, [adminStore.token, navigate]);
 
   const updateProduct = async (id, e) => {
-    console.log(e.target[2].files[0]);
     const form = new FormData();
     form.append(e.target[0].name, e.target[0].value);
     form.append(e.target[1].name, e.target[1].value);
-    if (e.target[2].files.length > 0) {
-      form.append(e.target[2].name, e.target[2].files[0]);
+    if (image) {
+      form.append("image", image);
     }
     form.append(e.target[3].name, e.target[3].value);
     form.append(e.target[4].name, e.target[4].value);
@@ -58,7 +58,6 @@ export default function Products() {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(result);
   };
 
   const deleteProduct = async (id) => {
@@ -167,12 +166,6 @@ export default function Products() {
                         >
                           <Form.Control
                             name="description"
-                            onChange={(e) => {
-                              changes = {
-                                ...changes,
-                                description: e.target.value,
-                              };
-                            }}
                             type="text"
                             placeholder="Descripción"
                             defaultValue={product.description}
@@ -185,14 +178,11 @@ export default function Products() {
                           <i className="fa fa-cloud-upload"></i> Cambiar Imagen
                         </label>
                         <Form.Control
+                          onChange={(e) => setImage(e.target.files[0])}
                           name="image"
                           type="file"
                           size="lg"
                           id="file-upload"
-                          onChange={(e) => {
-                            console.log(e.target.files);
-                            changes = { ...changes, image: e.target.files[0] };
-                          }}
                         />
                         <FloatingLabel controlId="floatingPrice" label="Precio">
                           <Form.Control
@@ -201,9 +191,6 @@ export default function Products() {
                             step=".01"
                             placeholder="Precio"
                             defaultValue={product.price}
-                            onChange={(e) => {
-                              changes = { ...changes, price: e.target.value };
-                            }}
                             min="1.00"
                             max="99.99"
                           />
