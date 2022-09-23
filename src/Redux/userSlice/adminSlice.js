@@ -5,11 +5,10 @@ export const adminSlice = createSlice({
   initialState: [],
   reducers: {
     loginAdmin: (state, action) => {
-      // state = action.payload;
-      state.push(action.payload);
+      return (state = [action.payload]);
     },
     logoutAdmin: (state) => {
-      state = [];
+      return (state = []);
     },
   },
 });

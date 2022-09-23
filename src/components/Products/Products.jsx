@@ -66,6 +66,9 @@ export default function Products() {
       method: "DELETE",
       baseURL: process.env.REACT_APP_API_BASE_URL,
       url: `/administrators/products/${id}`,
+      headers: {
+        Authorization: `Bearer ${adminStore.token}`,
+      },
     });
     console.log(result);
   };

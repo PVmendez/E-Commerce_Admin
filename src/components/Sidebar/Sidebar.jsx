@@ -12,12 +12,7 @@ export default function Sidebar() {
             <p className="m-0">Dashboard</p>
           </div>
         </Link>
-        <Link to="/clientes" className="a-sidebar">
-          <div className="div-sidebar">
-            <i className="fas fa-user-tag me-2"></i>
-            <p className="m-0">Customers</p>
-          </div>
-        </Link>
+
         <Link to="/pedidos" className="a-sidebar">
           <div className="div-sidebar">
             <i className="fas fa-shopping-cart me-2"></i>
