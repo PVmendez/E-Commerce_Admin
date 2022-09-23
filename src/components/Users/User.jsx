@@ -21,8 +21,6 @@ export const User = ({ users }) => {
     navigate("/administradores");
   };
 
-  const handleDeleteCustomer = () => {};
-
   return (
     <>
       <tr>

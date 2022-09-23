@@ -33,7 +33,7 @@ export default function ProtectedRoute({ children }) {
         }
       });
     }
-  }, [adminState]);
+  }, [adminState, navigate]);
   if (isLoading) {
     return <h2>loading</h2>;
   } else {

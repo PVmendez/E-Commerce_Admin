@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import Accordion from "react-bootstrap/Accordion";
 import Form from "react-bootstrap/Form";
-import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
@@ -30,7 +29,7 @@ export default function Pedidos() {
       setOrders(result.data.orders);
     };
     getOrders();
-  }, []);
+  }, [adminStore.token, navigate]);
 
   const updateOrderState = async (id, state) => {
     const result = await axios({

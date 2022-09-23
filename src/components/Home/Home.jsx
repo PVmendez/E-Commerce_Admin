@@ -11,7 +11,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-  const [salesData, setSalesData] = useState({
+  const [salesData] = useState({
     labels: SalesOnMonth.map((data) => data.month),
     datasets: [
       {

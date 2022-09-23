@@ -32,7 +32,7 @@ export default function Products() {
       setProducts(result.data.products);
     };
     getProducts();
-  }, []);
+  }, [adminStore.token, navigate]);
 
   const updateProduct = async (id, e) => {
     console.log(e.target[2].files[0]);
@@ -57,6 +57,7 @@ export default function Products() {
         "Content-Type": "multipart/form-data",
       },
     });
+    console.log(result)
   };
 
   const deleteProduct = async (id) => {
@@ -65,6 +66,7 @@ export default function Products() {
       baseURL: process.env.REACT_APP_API_BASE_URL,
       url: `/administrators/products/${id}`,
     });
+    console.log(result)
   };
   const showAlert = (id) => {
     Swal.fire({

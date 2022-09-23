@@ -26,7 +26,7 @@ export const Customer = () => {
       setUsers(result.data);
     };
     getUsers();
-  }, []);
+  }, [adminStore.token, navigate]);
 
   return (
     <>

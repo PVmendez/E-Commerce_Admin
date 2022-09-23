@@ -25,7 +25,7 @@ export const Login = () => {
     } else {
       return;
     }
-  }, []);
+  }, [adminState, navigate]);
   const handleSubmit = (e) => {
     e.preventDefault();
     const getUserLogin = async () => {

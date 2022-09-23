@@ -16,6 +16,7 @@ export default function CreateProduct() {
       url: `/administrators/products`,
       data: data,
     });
+    console.log(result)
     return navigate("/productos");
   };
   return (

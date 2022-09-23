@@ -31,17 +31,10 @@ export const CreateAdminForm = () => {
         },
       });
       if (result.data.error) {
-<<<<<<< HEAD
         return navigate("/login");
       } 
       return navigate("/administradores");
 
-=======
-        navigate("/login");
-      } else {
-        return navigate("/administradores");
-      }
->>>>>>> c2a2ebed3202a9b059f9470a7a93666a80d86f3c
     };
     createAdmin();
   };

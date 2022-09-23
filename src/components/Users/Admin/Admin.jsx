@@ -27,7 +27,7 @@ export const Admin = () => {
       }
     };
     getUsers();
-  }, []);
+  }, [adminStore.token, navigate]);
 
   const handleCreate = () => navigate("/administradores/crear");
 
