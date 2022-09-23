@@ -120,7 +120,7 @@ export default function Products() {
                         <td>
                           <img
                             src={
-                              process.env.BASE_URL_IMAGE + `${product.image}`
+                              process.env.REACT_APP_BASE_URL_IMAGE + `${product.image}`
                             }
                             alt=""
                             width={"50px"}

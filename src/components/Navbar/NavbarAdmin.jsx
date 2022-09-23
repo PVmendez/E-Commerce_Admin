@@ -25,7 +25,7 @@ function NavbarAdmin() {
           className="btn btn-primary"
           onClick={() => {
             navigate("/login");
-            dispatch(logoutAdmin());
+            dispatch(logout());
           }}
         >
           <i className="fas fa-sign-out-alt"></i>

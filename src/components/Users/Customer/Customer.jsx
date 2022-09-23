@@ -39,19 +39,6 @@ export const Customer = () => {
                 <div className="col-md-5 align-self-center">
                   <h3 className="text-themecolor">Usuarios</h3>
                 </div>
-                <div className="col-md-7 align-self-center">
-                  <button
-                    className="
-                  btn
-                  waves-effect waves-light
-                  btn-success
-                  float-end
-                  hidden-sm-down
-                "
-                  >
-                    Crear nuevo
-                  </button>
-                </div>
               </div>
               <div className="row">
                 <div className="col-lg-12">

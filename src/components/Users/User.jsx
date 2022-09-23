@@ -34,12 +34,6 @@ export const User = ({ users }) => {
           <>
             <td>{users.address}</td>
             <td>{users.phone}</td>
-            <td>
-              <button className="btn btn-primary">Update</button>
-              <button className="btn btn-danger" onClick={handleDeleteCustomer}>
-                Delete
-              </button>
-            </td>
           </>
         ) : (
           <>
