@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import NavbarAdmin from "../Navbar/NavbarAdmin";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -57,7 +58,7 @@ export default function Products() {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(result)
+    console.log(result);
   };
 
   const deleteProduct = async (id) => {
@@ -66,7 +67,7 @@ export default function Products() {
       baseURL: process.env.REACT_APP_API_BASE_URL,
       url: `/administrators/products/${id}`,
     });
-    console.log(result)
+    console.log(result);
   };
   const showAlert = (id) => {
     Swal.fire({
@@ -85,175 +86,183 @@ export default function Products() {
     });
   };
   return (
-    <div className="row rowEdit">
-      <Sidebar />
-      <div className="col-10">
-        <Link to="/productos/crear">Crear nuevo producto</Link>
-        <Accordion defaultActiveKey={0}>
-          {products.map((product, index) => {
-            let changes = {
-              name: product.name,
-              description: product.description,
-              price: product.price,
-              stock: product.stock,
-              category: product.category.id,
-              popular: product.popular.toString(),
-            };
-            return (
-              <Accordion.Item key={index} eventKey={index}>
-                <Accordion.Header>{product.name}</Accordion.Header>
-                <Accordion.Body>
-                  <Table striped bordered hover responsive>
-                    <thead>
-                      <tr>
-                        <th>Nombre</th>
-                        <th>Descripcion</th>
-                        <th>Foto</th>
-                        <th>Precio</th>
-                        <th>Stock</th>
-                        <th>Categoria</th>
-                        <th>Destacado</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{product.name}</td>
-                        <td>{product.description}</td>
-                        <td>
-                          <img
-                            src={
-                              process.env.REACT_APP_BASE_URL_IMAGE + `${product.image}`
-                            }
-                            alt=""
-                            width={"50px"}
-                          />
-                        </td>
-                        <td>{product.price}</td>
-                        <td>{product.stock}</td>
-                        <td>{product.category.name}</td>
-                        <td>{product.popular.toString()}</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                  <form
-                    encType="multipart/form-data"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      updateProduct(product.id, e);
-                    }}
-                  >
-                    <div className="d-flex flex-column flex-md-row">
-                      <FloatingLabel controlId="floatingName" label="Nombre">
-                        <Form.Control
-                          name="name"
-                          onChange={(e) => {
-                            changes = { ...changes, name: e.target.value };
-                          }}
-                          type="text"
-                          placeholder="Nombre"
-                          defaultValue={product.name}
-                        />
-                      </FloatingLabel>
-                      <FloatingLabel
-                        controlId="floatingDescription"
-                        label="Descripción"
-                      >
-                        <Form.Control
-                          name="description"
-                          onChange={(e) => {
-                            changes = {
-                              ...changes,
-                              description: e.target.value,
-                            };
-                          }}
-                          type="text"
-                          placeholder="Descripción"
-                          defaultValue={product.description}
-                        />
-                      </FloatingLabel>
-                      <label
-                        htmlFor="file-upload"
-                        className="custom-file-upload d-flex align-items-center"
-                      >
-                        <i className="fa fa-cloud-upload"></i> Cambiar Imagen
-                      </label>
-                      <Form.Control
-                        name="image"
-                        type="file"
-                        size="lg"
-                        id="file-upload"
-                        onChange={(e) => {
-                          console.log(e.target.files);
-                          changes = { ...changes, image: e.target.files[0] };
-                        }}
-                      />
-                      <FloatingLabel controlId="floatingPrice" label="Precio">
-                        <Form.Control
-                          name="price"
-                          type="number"
-                          step=".01"
-                          placeholder="Precio"
-                          defaultValue={product.price}
-                          onChange={(e) => {
-                            changes = { ...changes, price: e.target.value };
-                          }}
-                          min="1.00"
-                          max="99.99"
-                        />
-                      </FloatingLabel>
-                      <FloatingLabel controlId="floatingStock" label="Stock">
-                        <Form.Control
-                          name="stock"
-                          type="number"
-                          placeholder="Stock"
-                          defaultValue={product.stock}
-                          onChange={(e) => {
-                            changes = { ...changes, stock: e.target.value };
-                          }}
-                        />
-                      </FloatingLabel>
-                      <Form.Select
-                        name="categoryId"
-                        aria-label="Categoria"
-                        defaultValue={product.category.id}
-                        onChange={(e) => {
-                          changes = { ...changes, category: e.target.value };
-                        }}
-                      >
-                        <option value="1">Classic</option>
-                        <option value="2">Premium</option>
-                      </Form.Select>
-                      <Form.Select
-                        name="popular"
-                        aria-label="Destacado"
-                        defaultValue={product.popular.toString()}
-                        onChange={(e) => {
-                          changes = { ...changes, popular: e.target.value };
-                        }}
-                      >
-                        <option value="true">True</option>
-                        <option value="false">False</option>
-                      </Form.Select>
-                    </div>
-                    <Button variant={"success"} type="submit" className="mt-3">
-                      Actualizar
-                    </Button>
-                    <Button
-                      className="mt-3"
-                      variant={"dark"}
-                      onClick={() => {
-                        showAlert(product.id);
+    <>
+      <NavbarAdmin />
+      <div className="row rowEdit">
+        <Sidebar />
+        <div className="col-10">
+          <Link to="/productos/crear">Crear nuevo producto</Link>
+          <Accordion defaultActiveKey={0}>
+            {products.map((product, index) => {
+              let changes = {
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                stock: product.stock,
+                category: product.category.id,
+                popular: product.popular.toString(),
+              };
+              return (
+                <Accordion.Item key={index} eventKey={index}>
+                  <Accordion.Header>{product.name}</Accordion.Header>
+                  <Accordion.Body>
+                    <Table striped bordered hover responsive>
+                      <thead>
+                        <tr>
+                          <th>Nombre</th>
+                          <th>Descripcion</th>
+                          <th>Foto</th>
+                          <th>Precio</th>
+                          <th>Stock</th>
+                          <th>Categoria</th>
+                          <th>Destacado</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{product.name}</td>
+                          <td>{product.description}</td>
+                          <td>
+                            <img
+                              src={
+                                process.env.REACT_APP_BASE_URL_IMAGE +
+                                `${product.image}`
+                              }
+                              alt=""
+                              width={"50px"}
+                            />
+                          </td>
+                          <td>{product.price}</td>
+                          <td>{product.stock}</td>
+                          <td>{product.category.name}</td>
+                          <td>{product.popular.toString()}</td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                    <form
+                      encType="multipart/form-data"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        updateProduct(product.id, e);
                       }}
                     >
-                      Eliminar
-                    </Button>
-                  </form>
-                </Accordion.Body>
-              </Accordion.Item>
-            );
-          })}
-        </Accordion>
+                      <div className="d-flex flex-column flex-md-row">
+                        <FloatingLabel controlId="floatingName" label="Nombre">
+                          <Form.Control
+                            name="name"
+                            onChange={(e) => {
+                              changes = { ...changes, name: e.target.value };
+                            }}
+                            type="text"
+                            placeholder="Nombre"
+                            defaultValue={product.name}
+                          />
+                        </FloatingLabel>
+                        <FloatingLabel
+                          controlId="floatingDescription"
+                          label="Descripción"
+                        >
+                          <Form.Control
+                            name="description"
+                            onChange={(e) => {
+                              changes = {
+                                ...changes,
+                                description: e.target.value,
+                              };
+                            }}
+                            type="text"
+                            placeholder="Descripción"
+                            defaultValue={product.description}
+                          />
+                        </FloatingLabel>
+                        <label
+                          htmlFor="file-upload"
+                          className="custom-file-upload d-flex align-items-center"
+                        >
+                          <i className="fa fa-cloud-upload"></i> Cambiar Imagen
+                        </label>
+                        <Form.Control
+                          name="image"
+                          type="file"
+                          size="lg"
+                          id="file-upload"
+                          onChange={(e) => {
+                            console.log(e.target.files);
+                            changes = { ...changes, image: e.target.files[0] };
+                          }}
+                        />
+                        <FloatingLabel controlId="floatingPrice" label="Precio">
+                          <Form.Control
+                            name="price"
+                            type="number"
+                            step=".01"
+                            placeholder="Precio"
+                            defaultValue={product.price}
+                            onChange={(e) => {
+                              changes = { ...changes, price: e.target.value };
+                            }}
+                            min="1.00"
+                            max="99.99"
+                          />
+                        </FloatingLabel>
+                        <FloatingLabel controlId="floatingStock" label="Stock">
+                          <Form.Control
+                            name="stock"
+                            type="number"
+                            placeholder="Stock"
+                            defaultValue={product.stock}
+                            onChange={(e) => {
+                              changes = { ...changes, stock: e.target.value };
+                            }}
+                          />
+                        </FloatingLabel>
+                        <Form.Select
+                          name="categoryId"
+                          aria-label="Categoria"
+                          defaultValue={product.category.id}
+                          onChange={(e) => {
+                            changes = { ...changes, category: e.target.value };
+                          }}
+                        >
+                          <option value="1">Classic</option>
+                          <option value="2">Premium</option>
+                        </Form.Select>
+                        <Form.Select
+                          name="popular"
+                          aria-label="Destacado"
+                          defaultValue={product.popular.toString()}
+                          onChange={(e) => {
+                            changes = { ...changes, popular: e.target.value };
+                          }}
+                        >
+                          <option value="true">True</option>
+                          <option value="false">False</option>
+                        </Form.Select>
+                      </div>
+                      <Button
+                        variant={"success"}
+                        type="submit"
+                        className="mt-3"
+                      >
+                        Actualizar
+                      </Button>
+                      <Button
+                        className="mt-3"
+                        variant={"dark"}
+                        onClick={() => {
+                          showAlert(product.id);
+                        }}
+                      >
+                        Eliminar
+                      </Button>
+                    </form>
+                  </Accordion.Body>
+                </Accordion.Item>
+              );
+            })}
+          </Accordion>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

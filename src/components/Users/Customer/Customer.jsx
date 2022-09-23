@@ -5,6 +5,7 @@ import axios from "axios";
 import { User } from "../User";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import NavbarAdmin from "../../Navbar/NavbarAdmin";
 
 export const Customer = () => {
   const [users, setUsers] = useState([]);
@@ -30,6 +31,7 @@ export const Customer = () => {
 
   return (
     <>
+      <NavbarAdmin />
       <div className="row w-100">
         <Sidebar />
         <div className="col-10 p-0 mt-3">

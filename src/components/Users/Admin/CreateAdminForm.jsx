@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import NavbarAdmin from "../../Navbar/NavbarAdmin";
 
 export const CreateAdminForm = () => {
   const [user, setUser] = useState({
@@ -32,15 +33,15 @@ export const CreateAdminForm = () => {
       });
       if (result.data.error) {
         return navigate("/login");
-      } 
+      }
       return navigate("/administradores");
-
     };
     createAdmin();
   };
 
   return (
     <>
+      <NavbarAdmin />
       <div className="container-fluid">
         <div className="row justify-content-center">
           <div className="col-6 text-center justify-content-center">

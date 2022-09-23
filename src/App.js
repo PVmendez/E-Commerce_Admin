@@ -16,11 +16,11 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <>
-      <NavbarAdmin />
       <Routes>
         <Route path="*" element={<ErrorPage />} />
         <Route exact path="/login" element={<Login />} />
         {/* <Route exact path="/registro" element={<Register />} /> */}
+
         <Route
           exact
           path="/"
@@ -30,15 +30,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
-          exact
-          path="/clientes"
-          element={
-            <ProtectedRoute>
-              <Customer />
-            </ProtectedRoute>
-          }
-        />
+
         <Route
           exact
           path="/administradores"

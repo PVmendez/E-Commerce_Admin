@@ -1,11 +1,12 @@
 import Navbar from "react-bootstrap/Navbar";
-//import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { logoutAdmin } from "../../Redux/userSlice/adminSlice";
 import "../Navbar/Navbar.css";
 
 function NavbarAdmin() {
   const navigate = useNavigate();
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
   return (
     <Navbar bg="light" variant="light" id="navbarAdmin">
       <div>
@@ -25,7 +26,7 @@ function NavbarAdmin() {
           className="btn btn-primary"
           onClick={() => {
             navigate("/login");
-            //dispatch(logout());
+            dispatch(logoutAdmin());
           }}
         >
           <i className="fas fa-sign-out-alt"></i>
