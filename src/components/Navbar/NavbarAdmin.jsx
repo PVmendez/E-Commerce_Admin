@@ -21,16 +21,16 @@ function NavbarAdmin() {
       </div>
 
       <div className="d-flex align-items-center ">
-        <i className="fas fa-search" style={{ color: "grey" }}></i>
-        <button
-          className="btn btn-primary"
-          onClick={() => {
-            navigate("/login");
-            dispatch(logoutAdmin());
-          }}
-        >
-          <i className="fas fa-sign-out-alt"></i>
-        </button>
+        <div className="icon-signout">
+          <i
+            className="fas fa-sign-out-alt fa-xl"
+            style={{ color: "#8a7357" }}
+            onClick={() => {
+              navigate("/login");
+              dispatch(logoutAdmin());
+            }}
+          ></i>
+        </div>
       </div>
     </Navbar>
   );
