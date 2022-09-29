@@ -25,7 +25,7 @@ export const CreateAdminForm = () => {
       const result = await axios({
         method: "POST",
         baseURL: process.env.REACT_APP_API_BASE_URL,
-        url: `/administrators/register`,
+        url: `/users/register`,
         data: { user: user },
         headers: {
           Authorization: `Bearer ${adminStore.token}`,
