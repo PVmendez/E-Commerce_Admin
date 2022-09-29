@@ -44,19 +44,14 @@ export const Admin = () => {
                 <div className="col-md-5 align-self-center">
                   <h3 className="text-themecolor">Usuarios</h3>
                 </div>
-                <div className="col-md-7 align-self-center">
-                  <button
-                    onClick={handleCreate}
-                    className="
-                  btn
-                  waves-effect waves-light
-                  btn-success
-                  float-end
-                  hidden-sm-down
-                "
-                  >
-                    Crear nuevo
-                  </button>
+                <div className="col-md-7 d-flex justify-content-end align-items-center">
+                  <div className="icon-plus">
+                    <i
+                      className="fas fa-plus fa-xl"
+                      style={{ color: "#fff" }}
+                      onClick={handleCreate}
+                    ></i>
+                  </div>
                 </div>
               </div>
               <div className="row">

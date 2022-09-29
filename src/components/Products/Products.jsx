@@ -73,17 +73,23 @@ export default function Products() {
   };
   const showAlert = (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "¿Estás seguro?",
+      text: "Estas eliminando el producto de la base de datos, no podrás revertirlo",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: "#b0aaa9",
+      cancelButtonColor: "#8a7357",
+      cancelButtonText: "No, cancelar",
+      confirmButtonText: "Si, estoy seguro",
     }).then((result) => {
       if (result.isConfirmed) {
         deleteProduct(id);
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        Swal.fire({
+          title: "Eliminado",
+          text: "El producto ha sido eliminado",
+          icon: "success",
+          showConfirmButton: false,
+        });
       }
     });
   };
@@ -93,7 +99,9 @@ export default function Products() {
       <div className="row rowEdit">
         <Sidebar />
         <div className="col-10">
-          <Link to="/productos/crear">Crear nuevo producto</Link>
+          <Link to="/productos/crear" className="icon-plus">
+            <i className="fas fa-plus fa-xl" style={{ color: "#fff" }}></i>
+          </Link>
           <Accordion defaultActiveKey={0}>
             {products.map((product, index) => {
               let changes = {
@@ -229,22 +237,19 @@ export default function Products() {
                           <option value="false">False</option>
                         </Form.Select>
                       </div>
-                      <Button
-                        variant={"success"}
+                      <i
+                        style={{ color: "#8a7357" }}
                         type="submit"
-                        className="mt-3"
-                      >
-                        Actualizar
-                      </Button>
-                      <Button
-                        className="mt-3"
-                        variant={"dark"}
+                        className="far fa-edit me-3"
+                      ></i>
+
+                      <i
+                        style={{ color: "#8a7357" }}
+                        className="far fa-trash-alt mt-3"
                         onClick={() => {
                           showAlert(product.id);
                         }}
-                      >
-                        Eliminar
-                      </Button>
+                      ></i>
                     </form>
                   </Accordion.Body>
                 </Accordion.Item>

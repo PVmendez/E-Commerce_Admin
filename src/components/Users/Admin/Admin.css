@@ -36,7 +36,13 @@ root {
   border-radius: 0.2rem;
   padding: 1.5rem 1rem;
 }
-
+.icon-plus {
+  background-color: #8a7357;
+  color: white;
+  border-radius: 50%;
+  padding: 1%;
+  cursor: pointer;
+}
 @media (max-width: 575.98px) {
   .p-6 {
     padding: 2rem;
