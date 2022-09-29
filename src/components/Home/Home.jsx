@@ -90,7 +90,7 @@ export default function Home() {
               <LineChart salesData={salesData} />
             </div>
             <div className="d-flex justify-content-center div-cardsSocialMedia">
-              <Card id="cardSocialMedia" className="mt-5 ms-5">
+              <Card id="cardSocialMedia" className="mt-5 ms-5 mb-5">
                 <Card.Img
                   variant="top"
                   src="./img/Facebook.png"
@@ -108,7 +108,7 @@ export default function Home() {
                   </div>
                 </Card.Body>
               </Card>
-              <Card id="cardSocialMedia2" className="mt-5 ms-5">
+              <Card id="cardSocialMedia2" className="mt-5 ms-5 mb-5">
                 <Card.Img
                   variant="top"
                   src="./img/Twitter.jpg"
@@ -126,7 +126,7 @@ export default function Home() {
                   </div>
                 </Card.Body>
               </Card>
-              <Card id="cardSocialMedia3" className="mt-5 ms-5">
+              <Card id="cardSocialMedia3" className="mt-5 ms-5 mb-5">
                 <Card.Img
                   variant="top"
                   src="./img/Linkedin.jpg"

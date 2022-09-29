@@ -72,7 +72,6 @@ export const Admin = () => {
                               <th>First Name</th>
                               <th>Last Name</th>
                               <th>Email</th>
-                              <th>Password</th>
                               <th>Actions</th>
                             </tr>
                           </thead>
