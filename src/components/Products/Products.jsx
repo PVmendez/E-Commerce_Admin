@@ -103,13 +103,14 @@ export default function Products() {
             <i className="fas fa-plus fa-xl" style={{ color: "#fff" }}></i>
           </Link>
           <Accordion defaultActiveKey={0}>
+            {console.log(products)}
             {products.map((product, index) => {
               let changes = {
                 name: product.name,
                 description: product.description,
                 price: product.price,
                 stock: product.stock,
-                category: product.category.id,
+                category: product.categoryId,
                 popular: product.popular.toString(),
               };
               return (

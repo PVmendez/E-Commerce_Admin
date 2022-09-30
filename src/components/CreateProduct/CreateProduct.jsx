@@ -17,6 +17,8 @@ export default function CreateProduct() {
     let form;
     if (image) {
       form = new FormData(target);
+      form.append("category", data.category);
+      form.append("popular", data.popular);
     } else {
       form = new FormData();
       form.append("name", data.name);
@@ -25,6 +27,9 @@ export default function CreateProduct() {
       form.append("stock", data.stock);
       form.append("category", data.category);
       form.append("popular", data.popular);
+    }
+    for (var pair of form.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
     }
     const result = await axios({
       method: "POST",
